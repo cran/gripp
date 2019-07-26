@@ -6,19 +6,28 @@ sensitivity <- function(parm_s)
 # Read the file with information about the Inverse Problem.
  nn <- length(.GlobalEnv$file_name)
  change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,parm_s,.GlobalEnv$attrib_str)
+ #
+ # running the command
  if(.GlobalEnv$command_folder!='wd')
  {
    if (.GlobalEnv$isitR==TRUE)
-   {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
-   else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
+   {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))
+    resultado1 <- .GlobalEnv$results
+   }else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
  }else{
    if (.GlobalEnv$isitR==TRUE)
-   {eval(parse(.GlobalEnv$command))}
-   else{system(parse(.GlobalEnv$command))}
+   {eval(parse(.GlobalEnv$command))
+    resultado1 <- .GlobalEnv$results
+   }else{system(parse(.GlobalEnv$command))}
  }
- if(.GlobalEnv$result_folder!='wd')
- {resultado1 <- unlist(strsplit(readLines(paste(.GlobalEnv$result_folder,'/',.GlobalEnv$result,sep='')),' '))
- }else{resultado1 <- unlist(strsplit(readLines(.GlobalEnv$result),' '))}
+ #
+ # reading the results after running the command
+ # only needed if the function is not a R routine
+ if (.GlobalEnv$isitR==FALSE)
+ {if(.GlobalEnv$result_folder!='wd')
+  {resultado1 <- unlist(strsplit(readLines(paste(.GlobalEnv$result_folder,'/',.GlobalEnv$result,sep='')),' '))
+  }else{resultado1 <- unlist(strsplit(readLines(.GlobalEnv$result),' '))}
+ }
  mm <- length(resultado1)
  sensitivity <- matrix(ncol=nn,nrow=mm)
  parm_dif <- .GlobalEnv$parm_max - .GlobalEnv$parm_min
@@ -31,35 +40,52 @@ sensitivity <- function(parm_s)
    # change all parameters and auxi[i_sn] to parm_max1[i_sn]
    auxi[i_sn] <- parm_max1[i_sn]
    change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,auxi,.GlobalEnv$attrib_str)
+   # running the command
    if(.GlobalEnv$command_folder!='wd')
    {
      if (.GlobalEnv$isitR==TRUE)
-     {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
-     else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
+     {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))
+      resultado1 <- .GlobalEnv$results
+     }else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
    }else{
      if (.GlobalEnv$isitR==TRUE)
-     {eval(parse(.GlobalEnv$command))}
-     else{system(parse(.GlobalEnv$command))}
+     {eval(parse(.GlobalEnv$command))
+      resultado1 <- .GlobalEnv$results
+     }else{system(parse(.GlobalEnv$command))}
    }
-   if(.GlobalEnv$result_folder!='wd')
-   {resultado1 <- unlist(strsplit(readLines(paste(.GlobalEnv$result_folder,'/',.GlobalEnv$result,sep='')),' '))
-   }else{resultado1 <- unlist(strsplit(readLines(.GlobalEnv$result),' '))}
+   #
+   # reading the results after running the command
+   # only needed if the function is not a R routine
+   if (.GlobalEnv$isitR==FALSE)
+    {if(.GlobalEnv$result_folder!='wd')
+     {resultado1 <- unlist(strsplit(readLines(paste(.GlobalEnv$result_folder,'/',.GlobalEnv$result,sep='')),' '))
+     }else{resultado1 <- unlist(strsplit(readLines(.GlobalEnv$result),' '))}
+    }
    # change all parameters and auxi[i_sn] to parm_min[i_sn]
    auxi[i_sn] <- parm_min1[i_sn]
    change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,auxi,.GlobalEnv$attrib_str)
+   # running the command
    if(.GlobalEnv$command_folder!='wd')
-   {
+    {
      if (.GlobalEnv$isitR==TRUE)
-     {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
-     else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
-   }else{
+      {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))
+       resultado2 <- .GlobalEnv$results
+      }else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
+    }else{
      if (.GlobalEnv$isitR==TRUE)
-     {eval(parse(.GlobalEnv$command))}
-     else{system(parse(.GlobalEnv$command))}
-   }
-   if(.GlobalEnv$result_folder!='wd')
-   {resultado2 <- unlist(strsplit(readLines(paste(.GlobalEnv$result_folder,'/',.GlobalEnv$result,sep='')),' '))
-   }else{resultado2 <- unlist(strsplit(readLines(.GlobalEnv$result),' '))}
+      {eval(parse(.GlobalEnv$command))
+       resultado2 <- .GlobalEnv$results
+      }else{system(parse(.GlobalEnv$command))}
+    }
+   #
+   # reading the results after running the command
+   # only needed if the function is not a R routine
+   if (.GlobalEnv$isitR==FALSE)
+    {if(.GlobalEnv$result_folder!='wd')
+     {resultado2 <- unlist(strsplit(readLines(paste(.GlobalEnv$result_folder,'/',.GlobalEnv$result,sep='')),' '))
+     }else{resultado2 <- unlist(strsplit(readLines(.GlobalEnv$result),' '))}
+    }
+   #
    # change everything back to original value (parm[i_sn])
    change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,parm_s,.GlobalEnv$attrib_str)
    j_sn <- 1

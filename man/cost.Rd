@@ -49,7 +49,9 @@ parm_vector <- c(0,0)
 # You can change it to another location where your parameter files are.
 command_folder <- auxi
 #
-# Say if the Direct Problem is solved using R or outside
+# This variable means that the Direct Problem is solved using R or outside
+# if this is FALSE, the results are to be read from a file.
+# When it is TRUE, results will be passed inside R using the variable "results"
 isitR <- TRUE
 #
 # Configure the command to be used to call the Direct Problem Solver.

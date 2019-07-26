@@ -1,7 +1,7 @@
 Package: gripp
 Type: Package
 Title: General Inverse Problem Platform
-Version: 0.1.19
+Version: 0.2.19
 Author: Jader Lugon Junior, Antonio Jose da Silva Neto
 Maintainer: Jader Lugon Junior <jlugonjr@gmail.com>
 Description: Set of functions designed to solve inverse problems.
@@ -19,5 +19,5 @@ Repository: CRAN
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-07-21 03:58:36 UTC; Usuario
-Date/Publication: 2019-07-24 07:40:03 UTC
+Packaged: 2019-07-26 04:02:58 UTC; Usuario
+Date/Publication: 2019-07-26 08:20:02 UTC

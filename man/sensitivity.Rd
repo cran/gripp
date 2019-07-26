@@ -54,10 +54,14 @@ parm_max <- c(2,5)
 # You can change it to another location where your parameter files are.
 command_folder <- auxi
 #
-# Say if the Direct Problem is solved using R or outside
+# This variable means that the Direct Problem is solved using R or outside
+# if this is FALSE, the results are to be read from a file.
+# When it is TRUE, results will be passed inside R using the variable "results"
 isitR <- TRUE
 #
 # Configure the command to be used to call the Direct Problem Solver.
+# if this is FALSE, the results are to be read from a file.
+# When it is TRUE, results will be passed inside R using the variable "result"
 command <- 'f1.R'
 #
 # Parameter positive and negative percentual difference to be used to calculate the derivative
