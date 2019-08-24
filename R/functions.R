@@ -1,16 +1,18 @@
 # Function to read and change parameters
 #
-change_parm <- function(folder_name1,file_name1,parm_name1,line_number1,parm_type1,parm_vector1,parm1,attrib_str1)
+change_parm <- function(folder_name1,file_name1,parm_name1,line_number1,parm_type1,parm_vector1,parm1,attrib_str1,isitR1)
 {
 # Read the file with information about the Inverse Problem.
  folder<-getwd()
- n <- length(folder_name1)
+ nn <- length(folder_name1)
  i_cp<-1
- while (i_cp<=n)
+ while (i_cp<=nn)
  {
   if(folder_name1[i_cp]!='wd')
    {setwd(folder_name1[i_cp])}
-  my_data <- readLines(file_name1[i_cp])
+  if(isitR1==TRUE)
+   {my_data<-eval(parse(text=paste(".GlobalEnv$my",file_name1[i_cp],sep='')))
+   }else{my_data <- readLines(file_name1[i_cp])}
   if (line_number1[i_cp]==0)
   {
    if (parm_type1[i_cp]==1)
@@ -41,10 +43,28 @@ change_parm <- function(folder_name1,file_name1,parm_name1,line_number1,parm_typ
   }else{
    my_data[line_number1[i_cp]]<-toString(parm1[i_cp])
   }
-  writeLines(my_data,file_name1[i_cp])
+  if(isitR1==TRUE)
+   {eval(parse(text=paste(".GlobalEnv$my",file_name1[i_cp],"<-my_data",sep='')))
+   }else{writeLines(my_data,file_name1[i_cp])}
   setwd(folder)
   i_cp<-i_cp+1
  }
  return()
 }
 
+# Function to read the R each "file_name" when (isitR==TRUE)
+#
+readRfiles <- function(folder_name1,file_name1)
+{
+ folder<-getwd()
+ nn <- length(folder_name1)
+ i_rf<-1
+ while (i_rf<=nn)
+ {
+   if(folder_name1[i_rf]!='wd')
+    {setwd(folder_name1[i_rf])}
+   eval(parse(text=paste(".GlobalEnv$my",file_name1[i_rf],"<-readLines('",file_name1[i_rf],"')",sep='')))
+   setwd(folder)
+ i_rf<-i_rf+1
+ }
+}

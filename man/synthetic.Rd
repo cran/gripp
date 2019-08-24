@@ -9,17 +9,14 @@ synthetic(parm,sigma)}
 }
 \value{The result will be saved in the result file.}
 \description{
-The Direct Problem will be solved and the result will be corrupted to symulate experimental erros.
-    The Standard Deviation will be added to the solution and afterwards the results will be saved on disk.
-    It will use the direct problem solver to calculate the exact values for each parameter and the Standard Deviation wanted by the user to corrupt the results.
-    Each resulting data will be obtained using the equation:
-    Result_with_Error <- Direct_Problem_Result*(1+sigma).
-{\if{html}{\figure{Inverse_Problem_R_Solver_Synt.png}{options: width="100\%" alt="Figure: Inverse_Problem_R_Solver.png"}}}
+The Direct Problem will be solved and the result will be corrupted to simulate experimental error. The user can inform the Standard Deviation error that will be added to the exact solution. Then, the synthetic function will return the data obtained using the equation:
+
+Simulated_Results_with_Error <- Direct_Problem_Results * (1 + sigma).
+
+{\if{html}{\figure{Inverse_Problem_R_Solver_Synt.png}{options: width="100\%" alt="Figure: Inverse_Problem_R_Solver_Synt.png"}}}
 }
 
 \examples{
-# number of parameters.
-n <- 2
 #
 # Configure the name of the folder where each file with the parameter to be changed.
 # If the folder is 'wd' then it will not be changed.

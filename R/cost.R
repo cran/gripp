@@ -9,21 +9,26 @@ cost <- function(parm)
   {alvo <- unlist(strsplit(readLines(paste(.GlobalEnv$target_folder,'/',.GlobalEnv$target,sep='')),' '))
   }else{alvo <- unlist(strsplit(readLines(.GlobalEnv$target),' '))}
 #
+# reading each file_name information
+ readRfiles(.GlobalEnv$folder_name,.GlobalEnv$file_name)
+#
 # changing the parameters
- change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,parm,.GlobalEnv$attrib_str)
+ change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,parm,.GlobalEnv$attrib_str,.GlobalEnv$isitR)
 #
 # running the command
  if(.GlobalEnv$command_folder!='wd')
  {
    if (.GlobalEnv$isitR==TRUE)
-   {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))
+   {my<-eval(parse(text=paste(".GlobalEnv$my",.GlobalEnv$command,sep='')))
+    eval(parse(text=my))
     resultado <- .GlobalEnv$results
-   }else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
+   }else{system(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep=''))}
  }else{
    if (.GlobalEnv$isitR==TRUE)
-   {eval(parse(.GlobalEnv$command))
+   {my<-eval(parse(text=paste(".GlobalEnv$my",.GlobalEnv$command,sep='')))
+    eval(parse(text=my))
     resultado <- .GlobalEnv$results
-   }else{system(parse(.GlobalEnv$command))}
+   }else{system(.GlobalEnv$command)}
  }
 #
 # reading the results after running the command

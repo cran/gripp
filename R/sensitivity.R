@@ -5,20 +5,26 @@ sensitivity <- function(parm_s)
 {
 # Read the file with information about the Inverse Problem.
  nn <- length(.GlobalEnv$file_name)
- change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,parm_s,.GlobalEnv$attrib_str)
+ #
+ # reading each file_name information
+ readRfiles(.GlobalEnv$folder_name,.GlobalEnv$file_name)
+ #
+ change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,parm_s,.GlobalEnv$attrib_str,.GlobalEnv$isitR)
  #
  # running the command
  if(.GlobalEnv$command_folder!='wd')
  {
    if (.GlobalEnv$isitR==TRUE)
-   {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))
-    resultado1 <- .GlobalEnv$results
-   }else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
+   {my<-eval(parse(text=paste(".GlobalEnv$my",.GlobalEnv$command,sep='')))
+   eval(parse(text=my))
+   resultado1 <- .GlobalEnv$results
+   }else{system(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep=''))}
  }else{
    if (.GlobalEnv$isitR==TRUE)
-   {eval(parse(.GlobalEnv$command))
-    resultado1 <- .GlobalEnv$results
-   }else{system(parse(.GlobalEnv$command))}
+   {my<-eval(parse(text=paste(".GlobalEnv$my",.GlobalEnv$command,sep='')))
+   eval(parse(text=my))
+   resultado1 <- .GlobalEnv$results
+   }else{system(.GlobalEnv$command)}
  }
  #
  # reading the results after running the command
@@ -39,19 +45,21 @@ sensitivity <- function(parm_s)
    auxi<-parm_s
    # change all parameters and auxi[i_sn] to parm_max1[i_sn]
    auxi[i_sn] <- parm_max1[i_sn]
-   change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,auxi,.GlobalEnv$attrib_str)
+   change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,auxi,.GlobalEnv$attrib_str,.GlobalEnv$isitR)
    # running the command
    if(.GlobalEnv$command_folder!='wd')
    {
      if (.GlobalEnv$isitR==TRUE)
-     {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))
-      resultado1 <- .GlobalEnv$results
-     }else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
+     {my<-eval(parse(text=paste(".GlobalEnv$my",.GlobalEnv$command,sep='')))
+     eval(parse(text=my))
+     resultado1 <- .GlobalEnv$results
+     }else{system(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep=''))}
    }else{
      if (.GlobalEnv$isitR==TRUE)
-     {eval(parse(.GlobalEnv$command))
-      resultado1 <- .GlobalEnv$results
-     }else{system(parse(.GlobalEnv$command))}
+     {my<-eval(parse(text=paste(".GlobalEnv$my",.GlobalEnv$command,sep='')))
+     eval(parse(text=my))
+     resultado1 <- .GlobalEnv$results
+     }else{system(.GlobalEnv$command)}
    }
    #
    # reading the results after running the command
@@ -63,20 +71,22 @@ sensitivity <- function(parm_s)
     }
    # change all parameters and auxi[i_sn] to parm_min[i_sn]
    auxi[i_sn] <- parm_min1[i_sn]
-   change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,auxi,.GlobalEnv$attrib_str)
+   change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,auxi,.GlobalEnv$attrib_str,.GlobalEnv$isitR)
    # running the command
    if(.GlobalEnv$command_folder!='wd')
-    {
+   {
      if (.GlobalEnv$isitR==TRUE)
-      {eval(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))
-       resultado2 <- .GlobalEnv$results
-      }else{system(parse(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep='')))}
-    }else{
+     {my<-eval(parse(text=paste(".GlobalEnv$my",.GlobalEnv$command,sep='')))
+     eval(parse(text=my))
+     resultado2 <- .GlobalEnv$results
+     }else{system(paste(.GlobalEnv$command_folder,'/',.GlobalEnv$command,sep=''))}
+   }else{
      if (.GlobalEnv$isitR==TRUE)
-      {eval(parse(.GlobalEnv$command))
-       resultado2 <- .GlobalEnv$results
-      }else{system(parse(.GlobalEnv$command))}
-    }
+     {my<-eval(parse(text=paste(".GlobalEnv$my",.GlobalEnv$command,sep='')))
+     eval(parse(text=my))
+     resultado2 <- .GlobalEnv$results
+     }else{system(.GlobalEnv$command)}
+   }
    #
    # reading the results after running the command
    # only needed if the function is not a R routine
@@ -87,7 +97,7 @@ sensitivity <- function(parm_s)
     }
    #
    # change everything back to original value (parm[i_sn])
-   change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,parm_s,.GlobalEnv$attrib_str)
+   change_parm(.GlobalEnv$folder_name,.GlobalEnv$file_name,.GlobalEnv$parm_name,.GlobalEnv$line_number,.GlobalEnv$parm_type,.GlobalEnv$parm_vector,parm_s,.GlobalEnv$attrib_str,.GlobalEnv$isitR)
    j_sn <- 1
    while(j_sn<=mm)
    {

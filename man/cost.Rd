@@ -7,16 +7,13 @@ cost(parm)}
   \item{parm}{Set of values to be considered as parameters for the Direct Problem solution}
 }
 \value{Squared Difference between the target and the result that is calculated with the informed set of parameters 'parm'.}
+
 \description{
-This cost function is the one to be minimized using the Inverse Problem solver.
-    It will need to read information from a file, such as 'inverso.R', to define the cost function.
-    If the user doesn't inform everything that is needed, the cost function will not work.
+This cost function is the one to be minimized using the Inverse Problem solver. It will need some information about the target and the direct problem.
 {\if{html}{\figure{Inverse_Problem_R_Solver_Cost.png}{options: width="100\%" alt="Figure: Inverse_Problem_R_Solver_Cost.png"}}}
 }
 
 \examples{
-# number of parameters.
-n <- 2
 #
 # Configure the name of the folder where each file with the parameter to be changed.
 # If the folder is 'wd' then it will not be changed.
