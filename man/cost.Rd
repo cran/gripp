@@ -10,7 +10,7 @@ cost(parm)}
 
 \description{
 This cost function is the one to be minimized using the Inverse Problem solver. It will need some information about the target and the direct problem.
-{\if{html}{\figure{Inverse_Problem_R_Solver_Cost.png}{options: width="100\%" alt="Figure: Inverse_Problem_R_Solver_Cost.png"}}}
+{\if{html}{\figure{Inverse_Problem_R_Solver_Cost.png}{options: style="width:25" alt="Figure: Inverse_Problem_R_Solver_Cost.png"}}}
 }
 
 \examples{

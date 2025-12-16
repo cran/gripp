@@ -13,7 +13,7 @@ The Direct Problem will be solved and the result will be corrupted to simulate e
 
 Simulated_Results_with_Error <- Direct_Problem_Results * (1 + sigma).
 
-{\if{html}{\figure{Inverse_Problem_R_Solver_Synt.png}{options: width="100\%" alt="Figure: Inverse_Problem_R_Solver_Synt.png"}}}
+{\if{html}{\figure{Inverse_Problem_R_Solver_Synt.png}{options: style="width: 25" alt="Figure: Inverse_Problem_R_Solver_Synt.png"}}}
 }
 
 \examples{

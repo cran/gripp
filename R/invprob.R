@@ -2,6 +2,10 @@
 #
 #' @export
 invprob <- function(parm_init)
+#' @importFrom utils write.table read.csv write.csv
+#' @importFrom GenSA GenSA
+#' @importFrom GA ga
+#' @importFrom stats rnorm
 {
  if (.GlobalEnv$solver=='GenSA'){
   out_inv <- GenSA(par = parm_init, lower = .GlobalEnv$parm_min, upper = .GlobalEnv$parm_max, fn=cost, control = .GlobalEnv$control)

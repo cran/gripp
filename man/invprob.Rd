@@ -9,9 +9,8 @@
 \value{A vector with the quadratic residue calculated, the parameters estimated and the number of function call needed to solve the inverse problem.}
 \description{
 This sotfware will minimize a cost function and estimate a set of parameters using a Inverse Problem Solver.
-{\if{html}{\figure{Inverse_Problem_R_Solver_IP.png}{options: width="100\%" alt="Figure: Inverse_Problem_R_Solver_IP.png"}}}
+{\if{html}{\figure{Inverse_Problem_R_Solver_IP.png}{options: style="width:25" alt="Figure: Inverse_Problem_R_Solver_IP.png"}}}
 }
-
 
 \examples{
 #
@@ -98,4 +97,3 @@ parm <- c(1.5,4)
 out<-invprob(parm)
 out
 }
-

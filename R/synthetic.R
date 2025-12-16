@@ -2,6 +2,10 @@
 #
 #' @export
 synthetic <- function(parm,sigma)
+#' @importFrom utils write.table read.csv write.csv
+#' @importFrom GenSA GenSA
+#' @importFrom GA ga
+#' @importFrom stats rnorm
 {
  n <- length(.GlobalEnv$file_name)
  #

@@ -10,7 +10,7 @@ Problem for each parameter.}
 \description{
 This sotfware will calculate the sensitivity matrix for the Direct Problem.
 First order derivatives are calculated using central difference approximation.
-{\if{html}{\figure{Inverse_Problem_R_Solver_Sens.png}{options: width="100\%" alt="Figure: Inverse_Problem_R_Solver_Sens.png"}}}
+{\if{html}{\figure{Inverse_Problem_R_Solver_Sens.png}{options: style="width: 25" alt="Figure: Inverse_Problem_R_Solver_Sens.png"}}}
 }
 
 \examples{

@@ -2,6 +2,10 @@
 #
 #' @export
 sensitivity <- function(parm_s)
+#' @importFrom utils write.table read.csv write.csv
+#' @importFrom GenSA GenSA
+#' @importFrom GA ga
+#' @importFrom stats rnorm
 {
 # Read the file with information about the Inverse Problem.
  nn <- length(.GlobalEnv$file_name)

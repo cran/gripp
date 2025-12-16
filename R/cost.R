@@ -2,6 +2,10 @@
 #
 #' @export
 cost <- function(parm)
+#' @importFrom utils write.table read.csv write.csv
+#' @importFrom GenSA GenSA
+#' @importFrom GA ga
+#' @importFrom stats rnorm
 {
 #
 # reading target information
